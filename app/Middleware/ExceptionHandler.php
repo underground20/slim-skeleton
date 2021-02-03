@@ -2,21 +2,22 @@
 
 namespace App\Middleware;
 
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Slim\Routing\RouteContext;
+use Slim\Exception\HttpNotFoundException;
 
-class RequestAttribute implements MiddlewareInterface
+class ExceptionHandler implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $route = RouteContext::fromRequest($request)->getRoute();
-        foreach ($route->getArguments() as $key => $val) {
-            $request = $request->withAttribute($key, $val);
+        try {
+            return $handler->handle($request);
         }
-
-        return $handler->handle($request);
+        catch (HttpNotFoundException $exception) {
+            return  new JsonResponse(['404' => 'Route not found'], 404);
+        }
     }
 }
