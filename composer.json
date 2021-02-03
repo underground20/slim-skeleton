@@ -3,11 +3,15 @@
         "slim/slim": "^4.7",
         "laminas/laminas-diactoros": "^2.5",
         "php-di/php-di": "^6.3",
-        "doctrine/orm": "^2.8"
+        "doctrine/orm": "^2.8",
+        "symfony/console": "^5.2"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/"
         }
+    },
+    "scripts": {
+        "console": "php bin/app.php --ansi"
     }
 }
