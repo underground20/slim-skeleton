@@ -16,3 +16,15 @@ services:
     working_dir: /var/www/app
     environment:
       - XDEBUG_CONFIG="idekey=${IDE_KEY} remote_enable=1 remote_host=${XDEBUG_REMOTE_IP}
+    env_file:
+      - .env
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
