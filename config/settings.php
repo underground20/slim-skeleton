@@ -9,8 +9,8 @@ return [
     ],
     'doctrine' => [
         'dev_mode' => true,
-        'cache_dir' => __DIR__ . './var/cache/doctrine/cache',
-        'proxy_dir' => __DIR__ . './var/cache/doctrine/proxy',
+        'cache_dir' => __DIR__ . '/../var/cache/doctrine/cache',
+        'proxy_dir' => __DIR__ . '/../var/cache/doctrine/proxy',
         'metadata_dirs' => [__DIR__ . '/../app/Entity'],
         'connection' => [
             'driver' => 'pdo_mysql',
