@@ -8,7 +8,11 @@ services:
     ports:
       - "8081:80"
   php-fpm:
-    image: php:7.4-fpm
+    build:
+      context: ./docker
+      dockerfile: php-fpm.docker
     volumes:
       - ./:/var/www/app
     working_dir: /var/www/app
+    environment:
+      - XDEBUG_CONFIG="idekey=${IDE_KEY} remote_enable=1 remote_host=${XDEBUG_REMOTE_IP}
