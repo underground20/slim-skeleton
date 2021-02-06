@@ -7,7 +7,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Slim\Exception\HttpNotFoundException;
 
 class ExceptionHandler implements MiddlewareInterface
 {
@@ -16,8 +15,8 @@ class ExceptionHandler implements MiddlewareInterface
         try {
             return $handler->handle($request);
         }
-        catch (HttpNotFoundException $exception) {
-            return  new JsonResponse(['404' => 'Route not found'], 404);
+        catch (\Exception $exception) {
+            return  new JsonResponse(['exception' => $exception->getMessage()], $exception->getCode());
         }
     }
 }

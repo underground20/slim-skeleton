@@ -10,7 +10,7 @@ return static function (App $app) {
     $app->addRoutingMiddleware();
 
     $devMode = getenv('DEV_MODE', true);
-    if ($devMode) {
+    if ($devMode === false) {
         $app->addErrorMiddleware(
             $settings['displayErrorDetails'],
             $settings['logErrors'],

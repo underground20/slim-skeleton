@@ -3,9 +3,7 @@
 namespace App\Action;
 
 use App\Entity\User;
-use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
