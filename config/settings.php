@@ -1,5 +1,7 @@
 <?php
 
+use Twig\Loader\FilesystemLoader;
+
 return [
     'settings' => [
         'displayErrorDetails' => true,
@@ -19,5 +21,12 @@ return [
             'user' => getenv('DB_USER'),
             'password' => getenv('DB_PASSWORD')
         ]
+    ],
+    'twig' => [
+        'debug' => getenv('DEV_MODE'),
+        'template_dirs' => [
+            FilesystemLoader::MAIN_NAMESPACE => __DIR__ . '/../../templates',
+        ],
+        'cache_dir' => __DIR__ . '/../../var/cache/twig',
     ],
 ];
