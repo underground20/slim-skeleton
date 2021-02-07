@@ -25,8 +25,8 @@ return [
     'twig' => [
         'debug' => getenv('DEV_MODE'),
         'template_dirs' => [
-            FilesystemLoader::MAIN_NAMESPACE => __DIR__ . '/../../templates',
+            FilesystemLoader::MAIN_NAMESPACE => __DIR__ . '/../templates',
         ],
-        'cache_dir' => __DIR__ . '/../../var/cache/twig',
+        'cache_dir' => __DIR__ . '/../var/cache/twig',
     ],
 ];

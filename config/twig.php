@@ -7,7 +7,7 @@ use Twig\Loader\FilesystemLoader;
 
 return [
     Environment::class => function (ContainerInterface $container): Environment {
-        $config = $container->get('config')['twig'];
+        $config = $container->get('twig');
         $loader = new FilesystemLoader();
 
         foreach ($config['template_dirs'] as $alias => $dir) {
