@@ -9,8 +9,8 @@ return static function (App $app) {
     $app->add(RequestAttribute::class);
     $app->addRoutingMiddleware();
 
-    $devMode = getenv('DEV_MODE', true);
-    if ($devMode === false) {
+    $devMode = (bool)getenv('DEV_MODE', true);
+    if ($devMode) {
         $app->addErrorMiddleware(
             $settings['displayErrorDetails'],
             $settings['logErrors'],
