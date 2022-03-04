@@ -5,13 +5,13 @@ return [
         'displayErrorDetails' => true,
         'logErrors' => false,
         'logErrorDetails' => false,
-        'log_file' => __DIR__ . '/../var/log/app.log'
+        'log_file' => __DIR__ . '/../var/log/src.log'
     ],
     'doctrine' => [
         'dev_mode' => true,
         'cache_dir' => __DIR__ . '/../var/cache/doctrine/cache',
         'proxy_dir' => __DIR__ . '/../var/cache/doctrine/proxy',
-        'metadata_dirs' => [__DIR__ . '/../app/Entity'],
+        'metadata_dirs' => [__DIR__ . '/../src/Entity'],
         'connection' => [
             'driver' => 'pdo_mysql',
             'host' => 'mysql',
