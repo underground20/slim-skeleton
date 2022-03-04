@@ -20,12 +20,12 @@ return [
     'config' => [
         'doctrine' => [
             'dev_mode' => true,
-            'cache_dir' => __DIR__ . '/../var/cache/doctrine/cache',
-            'proxy_dir' => __DIR__ . '/../var/cache/doctrine/proxy',
-            'metadata_dirs' => [__DIR__ . '/../src/User'],
+            'cache_dir' => __DIR__ . '/../../var/cache/doctrine/cache',
+            'proxy_dir' => __DIR__ . '/../../var/cache/doctrine/proxy',
+            'metadata_dirs' => [__DIR__ . '/../../src/User'],
             'connection' => [
-                'driver' => 'pdo_mysql',
-                'host' => 'mysql',
+                'driver' => 'pdo_pgsql',
+                'host' => getenv('DB_HOST'),
                 'dbname' => getenv('DB_NAME'),
                 'user' => getenv('DB_USER'),
                 'password' => getenv('DB_PASSWORD')

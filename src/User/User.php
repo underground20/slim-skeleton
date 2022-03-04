@@ -2,32 +2,31 @@
 
 namespace App\User;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
-/**
- * @ORM\Entity
- * @@ORM\Table(name="users")
- */
+#[Entity]
+#[Table(name: "users")]
 class User
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
-     * @ORM\Id
-     */
-    private $id;
+    #[Column(name: "id", type: "integer")]
+    #[Id]
+    #[GeneratedValue]
+    private int $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $name;
 
-    public function getId()
+    #[Column(name: "name", type: "string")]
+    private string $name;
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
