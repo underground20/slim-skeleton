@@ -1,6 +1,6 @@
 <?php
 
-use App\Action\IndexAction;
+use App\Http\Action\IndexAction;
 use Slim\App;
 
 return static function (App $app) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action;
+namespace App\Http\Action;
 
 use App\User\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +12,7 @@ use Slim\Exception\HttpNotFoundException;
 
 class IndexAction implements RequestHandlerInterface
 {
-    private $em;
+    private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
     {
