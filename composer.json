@@ -1,10 +1,13 @@
 {
     "require": {
         "slim/slim": "^4.7",
-        "laminas/laminas-diactoros": "^2.5",
+        "laminas/laminas-diactoros": "^2.8",
         "php-di/php-di": "^6.3",
-        "doctrine/orm": "^2.8",
-        "symfony/console": "^5.2"
+        "doctrine/orm": "^2.11",
+        "symfony/console": "^5.2",
+        "symfony/cache": "^6.0",
+        "doctrine/annotations": "^1.13",
+        "laminas/laminas-config-aggregator": "^1.7"
     },
     "autoload": {
         "psr-4": {

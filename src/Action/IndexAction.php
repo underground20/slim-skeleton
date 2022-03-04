@@ -2,7 +2,7 @@
 
 namespace App\Action;
 
-use App\Entity\User;
+use App\User\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;

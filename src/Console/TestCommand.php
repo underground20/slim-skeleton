@@ -13,7 +13,7 @@ class TestCommand extends Command
         $this->setName('test')->setDescription('test');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('<info>Test</info>');
         return 0;

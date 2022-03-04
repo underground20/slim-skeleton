@@ -3,8 +3,5 @@
 use DI\ContainerBuilder;
 
 $builder = new ContainerBuilder();
-$builder->addDefinitions(
-    require __DIR__ . '/settings.php',
-    require __DIR__ . '/doctrine.php'
-);
+$builder->addDefinitions(require __DIR__ . '/dependencies.php');
 return $builder->build();
