@@ -1,0 +1,14 @@
+parameters:
+    level: 8
+    paths:
+        - src
+
+    bootstrapFiles:
+        - vendor/autoload.php
+
+    reportUnmatchedIgnoredErrors: true
+
+    parallel:
+        maximumNumberOfProcesses: 4
+
+    tmpDir: var/cache/.phpstan

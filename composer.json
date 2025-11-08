@@ -1,21 +1,36 @@
 {
+    "name": "underground/slim-skeleton",
+    "description": "Slim skeleton with docker environment and basic configuration",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikolay Parshakov",
+            "email": "prognik97@gmail.com"
+        }
+    ],
     "require": {
-        "slim/slim": "^4.7",
-        "laminas/laminas-diactoros": "^2.8",
-        "php-di/php-di": "^6.3",
-        "doctrine/orm": "^2.11",
-        "symfony/console": "^5.2",
-        "symfony/cache": "^6.0",
-        "doctrine/annotations": "^1.13",
-        "laminas/laminas-config-aggregator": "^1.7",
-        "doctrine/migrations": "^3.4"
+        "slim/slim": "^4.15",
+        "php-di/php-di": "^6.4",
+        "laminas/laminas-config-aggregator": "^1.19",
+        "nyholm/psr7": "^1.8",
+        "nyholm/psr7-server": "^1.1",
+        "monolog/monolog": "^3.9"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "phpstan/phpstan": "^2.1",
+        "friendsofphp/php-cs-fixer": "^3.89",
+        "phpunit/phpunit": "^12.4"
     },
     "autoload": {
         "psr-4": {
             "App\\": "src/"
         }
     },
-    "scripts": {
-        "console": "php bin/app.php --ansi"
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
     }
 }

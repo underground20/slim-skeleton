@@ -1,46 +1,47 @@
-version: '3.7'
 services:
-  nginx:
-    build:
-      context: ./docker/nginx
-    volumes:
-      - ./:/var/www/app
-    ports:
-      - "8081:80"
-    depends_on:
-      - php-fpm
-  php-fpm:
-    build:
-      context: ./docker/php-fpm
-    volumes:
-      - ./:/var/www/app
-    environment:
-      PHP_IDE_CONFIG: serverName=src
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_HOST: ${DB_HOST}
-      DB_PASSWORD: ${DB_PASSWORD}
-  php-cli:
-    build:
-      context: ./docker/php-cli
-    volumes:
-      - ./:/var/www/app
-    environment:
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_HOST: ${DB_HOST}
-      DB_PASSWORD: ${DB_PASSWORD}
-    tty: true
-  postgres:
-    image: postgres:13-alpine
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - ./data:/var/lib/postgresql/data
-    ports:
-      - "54321:5432"
+    nginx:
+        build:
+            context: ./docker/nginx
+            args:
+                NGINX_IMAGE_VERSION: ${NGINX_IMAGE_VERSION:-1.25}
+        volumes:
+            - ./:/var/www/app
+        ports:
+            - "8081:80"
+    php-fpm:
+        build:
+            context: ./docker/php-fpm
+            args:
+                PHP_IMAGE_VERSION: ${PHP_IMAGE_VERSION:-8.4}
+                XDEBUG_VERSION: ${XDEBUG_VERSION:-3.4.0beta1}
+        volumes:
+            - ./:/var/www/app
+        environment:
+            PHP_IDE_CONFIG: serverName=${SERVER_NAME}
+        env_file:
+            - .env
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+    php-cli:
+        build:
+            context: ./docker/php-cli
+            args:
+                PHP_IMAGE_VERSION: ${PHP_IMAGE_VERSION:-8.4}
+        volumes:
+            - ./:/var/www/app
+        tty: true
+    postgres:
+        image: postgres:${POSTGRES_VERSION:-16}-alpine
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_NAME}
+        env_file:
+            - .env
+        volumes:
+            - db:/var/lib/postgresql/data
+        ports:
+            - "54321:5432"
 
 volumes:
-  postgres:
+    db:

@@ -1,22 +1,27 @@
 <?php
 
+use App\Infrastructure\Middleware\ExceptionHandler;
+use App\Infrastructure\Middleware\RequestAttribute;
+use Psr\Log\LoggerInterface;
 use Slim\App;
-use App\Middleware\RequestAttribute;
-use App\Middleware\ExceptionHandler;
 
-return static function (App $app) {
-    $settings = $app->getContainer()->get('config')['settings'];
+return static function (App $app): void {
     $app->add(RequestAttribute::class);
     $app->addRoutingMiddleware();
 
-    $devMode = (bool)getenv('DEV_MODE', true);
-    if ($devMode) {
+    $env = getenv('APP_ENV') ?: 'dev';
+    if ($env === 'dev') {
+        $settings = $app->getContainer()->get('config')['settings'];
+        $logger = $app->getContainer()->get(LoggerInterface::class);
         $app->addErrorMiddleware(
             $settings['display_error_details'],
             $settings['log_errors'],
-            $settings['log_error_details']
+            $settings['log_error_details'],
+            $logger,
         );
-    } else {
-        $app->add(ExceptionHandler::class);
+
+        return;
     }
+
+    $app->add(ExceptionHandler::class);
 };
