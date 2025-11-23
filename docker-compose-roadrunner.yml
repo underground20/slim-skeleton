@@ -1,0 +1,25 @@
+services:
+    roadrunner-app:
+        build:
+            context: .
+            dockerfile: ./docker/roadrunner/Dockerfile
+        ports:
+            - "8080:8080"
+            - "6001:6001"
+            - "2112:2112"
+            - "2113:2113"
+    postgres:
+        image: postgres:${POSTGRES_VERSION:-16}-alpine
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_NAME}
+        env_file:
+            - .env
+        volumes:
+            - db:/var/lib/postgresql/data
+        ports:
+            - "54321:5432"
+
+volumes:
+    db:

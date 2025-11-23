@@ -1,0 +1,30 @@
+version: '3'
+
+http:
+    address: 0.0.0.0:8080
+    pool:
+        num_workers: 4
+        max_jobs: 128
+        allocate_timeout: 60s
+        destroy_timeout: 30s
+        supervisor:
+            ttl: 30m
+            idle_timeout: 1m
+            max_worker_memory: 256
+
+server:
+    command: "php worker.php"
+    relay: "pipes"
+
+rpc:
+    listen: tcp://127.0.0.1:6001
+
+logs:
+    mode: production
+    level: info
+
+metrics:
+    address: 0.0.0.0:2112
+
+health:
+    address: 0.0.0.0:2113
